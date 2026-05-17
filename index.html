@@ -3,449 +3,777 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Latihan Soal — Bahasa Indonesia</title>
+<title>Soal Latihan Bahasa Indonesia Kelas X</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
-:root {
-  --bg:#f5f6fa; --white:#fff; --border:#e4e6ef;
-  --text:#1a1d2e; --muted:#8b8fa8;
-  --neg:#ff6b35; --bio:#3b82f6; --pui:#f59e0b;
-  --correct:#22c55e; --wrong:#ef4444;
-  --cbg:#f0fdf4; --wbg:#fef2f2;
-}
-body { font-family:'Poppins',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* HERO */
-.hero { background:var(--white); border-bottom:1px solid var(--border); padding:26px 20px 18px; text-align:center; }
-.hero-badge { display:inline-block; background:#fff3ee; color:var(--neg); font-size:11px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; padding:4px 12px; border-radius:100px; margin-bottom:10px; }
-.hero h1 { font-size:clamp(20px,6vw,30px); font-weight:700; line-height:1.2; }
-.hero h1 span { color:var(--neg); }
-.hero p { color:var(--muted); font-size:13px; margin-top:5px; }
+  :root {
+    --primary: #2563eb;
+    --primary-light: #dbeafe;
+    --success: #16a34a;
+    --success-light: #dcfce7;
+    --danger: #dc2626;
+    --danger-light: #fee2e2;
+    --bg: #f0f4ff;
+    --card: #ffffff;
+    --text: #1e293b;
+    --muted: #64748b;
+    --border: #e2e8f0;
+    --radius: 14px;
+    --shadow: 0 2px 16px rgba(37,99,235,0.07);
+  }
 
-/* SCORE BAR */
-.score-bar { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; background:var(--white); border-bottom:1px solid var(--border); padding:10px 16px; }
-.score-pills { display:flex; gap:6px; flex-wrap:wrap; }
-.pill { display:flex; align-items:center; gap:5px; padding:4px 11px; border-radius:100px; font-size:12px; font-weight:600; }
-.pill-a { background:#eef2ff; color:#6366f1; }
-.pill-c { background:#f0fdf4; color:var(--correct); }
-.pill-w { background:#fef2f2; color:var(--wrong); }
-.dot { width:7px; height:7px; border-radius:50%; }
-.pill-a .dot { background:#6366f1; }
-.pill-c .dot { background:var(--correct); }
-.pill-w .dot { background:var(--wrong); }
-.reset-btn { background:#f3f4f6; border:none; color:var(--muted); font-family:'Poppins',sans-serif; font-size:12px; font-weight:600; padding:6px 14px; border-radius:100px; cursor:pointer; }
-.reset-btn:active { background:#e5e7eb; }
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 0;
+  }
 
-/* PROGRESS */
-.prog-wrap { background:var(--white); padding:8px 16px 12px; border-bottom:1px solid var(--border); }
-.prog-track { height:6px; background:#e4e6ef; border-radius:100px; overflow:hidden; }
-.prog-fill { height:100%; background:linear-gradient(90deg,var(--neg),#ff9a5c); border-radius:100px; transition:width .4s ease; width:0%; }
-.prog-label { font-size:11px; color:var(--muted); margin-top:5px; }
+  /* Header */
+  .header {
+    background: var(--primary);
+    color: #fff;
+    padding: 20px 16px 16px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(37,99,235,0.18);
+  }
+  .header h1 { font-size: 1.05rem; font-weight: 700; letter-spacing: 0.01em; }
+  .header p { font-size: 0.78rem; opacity: 0.85; margin-top: 2px; }
 
-/* TABS */
-.tabs-wrap { position:sticky; top:0; z-index:100; background:var(--white); border-bottom:1px solid var(--border); padding:10px 14px; }
-.tabs { display:flex; gap:6px; overflow-x:auto; scrollbar-width:none; }
-.tabs::-webkit-scrollbar { display:none; }
-.tab-btn { flex-shrink:0; padding:7px 15px; border-radius:100px; border:1.5px solid var(--border); background:transparent; color:var(--muted); font-family:'Poppins',sans-serif; font-size:12px; font-weight:600; cursor:pointer; white-space:nowrap; transition:all .2s; }
-.tab-btn.tneg.active { background:var(--neg); border-color:var(--neg); color:#fff; }
-.tab-btn.tbio.active { background:var(--bio); border-color:var(--bio); color:#fff; }
-.tab-btn.tpui.active { background:var(--pui); border-color:var(--pui); color:#fff; }
-.tab-btn.tall.active { background:#6366f1; border-color:#6366f1; color:#fff; }
+  /* Progress bar */
+  .progress-wrap {
+    background: rgba(255,255,255,0.25);
+    border-radius: 99px;
+    height: 6px;
+    margin-top: 12px;
+    overflow: hidden;
+  }
+  .progress-bar {
+    background: #fff;
+    height: 100%;
+    border-radius: 99px;
+    transition: width 0.4s ease;
+  }
+  .progress-label { font-size: 0.72rem; opacity: 0.9; margin-top: 5px; }
 
-/* SECTIONS */
-.section { display:none; padding:14px 14px 24px; }
-.section.active { display:block; }
-.sec-label { font-size:11px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:1.2px; margin-bottom:12px; padding-left:2px; }
+  /* Score summary at top */
+  .score-summary {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    margin-top: 10px;
+    font-size: 0.75rem;
+  }
+  .score-summary span { background: rgba(255,255,255,0.18); border-radius: 99px; padding: 2px 12px; }
+  .score-summary .s-correct { background: rgba(22,163,74,0.35); }
+  .score-summary .s-wrong { background: rgba(220,38,38,0.3); }
 
-/* CARD */
-.qcard { background:var(--white); border:1.5px solid var(--border); border-radius:14px; margin-bottom:12px; overflow:hidden; animation:pop .22s ease both; }
-.qcard.ok  { border-color:var(--correct); }
-.qcard.err { border-color:var(--wrong); }
-@keyframes pop { from{opacity:0;transform:scale(.97)} to{opacity:1;transform:scale(1)} }
+  /* Main content */
+  .main { padding: 16px 12px 80px; max-width: 700px; margin: 0 auto; }
 
-.qcard-top { display:flex; align-items:center; gap:9px; padding:13px 13px 9px; }
-.qbadge { width:27px; height:27px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; color:#fff; flex-shrink:0; }
-.neg .qbadge { background:var(--neg); }
-.bio .qbadge { background:var(--bio); }
-.pui .qbadge { background:var(--pui); }
-.qcat { font-size:11px; color:var(--muted); font-weight:600; text-transform:uppercase; letter-spacing:.8px; }
-.qicon { margin-left:auto; font-size:18px; opacity:0; transition:opacity .25s; }
-.qcard.ok .qicon::after  { content:'✅'; }
-.qcard.err .qicon::after { content:'❌'; }
-.qcard.ok .qicon, .qcard.err .qicon { opacity:1; }
+  /* Section divider */
+  .section-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 22px 0 8px;
+    padding-left: 2px;
+  }
 
-.qtext { padding:0 13px 12px; font-size:13.5px; font-weight:500; line-height:1.6; border-bottom:1px solid var(--border); }
+  /* Reading passage */
+  .passage {
+    background: #f8faff;
+    border-left: 3px solid var(--primary);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    font-size: 0.82rem;
+    line-height: 1.7;
+    color: #334155;
+  }
+  .passage-title { font-weight: 600; margin-bottom: 6px; font-size: 0.83rem; color: var(--primary); }
+  .dialogue { font-style: italic; }
+  .dialogue p { margin-bottom: 2px; }
 
-/* OPTIONS */
-.opts { padding:10px; display:flex; flex-direction:column; gap:7px; }
-.opt { display:flex; align-items:flex-start; gap:9px; padding:10px 11px; border-radius:10px; border:1.5px solid var(--border); background:#fafafa; cursor:pointer; text-align:left; width:100%; font-family:'Poppins',sans-serif; transition:all .15s; }
-.opt:hover:not(:disabled) { border-color:#c0c3d8; background:#f3f4f6; }
-.opt:disabled { cursor:default; }
-.oletter { width:26px; height:26px; min-width:26px; border-radius:7px; background:#e9eaf0; color:var(--muted); font-size:12px; font-weight:700; display:flex; align-items:center; justify-content:center; transition:all .15s; margin-top:1px; }
-.otext { font-size:13px; font-weight:500; color:var(--text); line-height:1.45; }
+  /* Question card */
+  .card {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 16px;
+    margin-bottom: 14px;
+    border: 1.5px solid var(--border);
+    transition: border-color 0.2s;
+  }
+  .card.answered-correct { border-color: var(--success); }
+  .card.answered-wrong { border-color: var(--danger); }
 
-.opt.correct { background:var(--cbg); border-color:var(--correct); }
-.opt.correct .oletter { background:var(--correct); color:#fff; }
-.opt.correct .otext { color:#166534; }
-.opt.wrong { background:var(--wbg); border-color:var(--wrong); }
-.opt.wrong .oletter { background:var(--wrong); color:#fff; }
-.opt.wrong .otext { color:#991b1b; }
-.opt.show-ans { background:var(--cbg); border-color:var(--correct); opacity:.75; }
-.opt.show-ans .oletter { background:var(--correct); color:#fff; }
+  .q-num { font-size: 0.68rem; font-weight: 600; color: var(--muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .q-text { font-size: 0.88rem; font-weight: 500; line-height: 1.6; margin-bottom: 14px; }
 
-/* EXPLANATION */
-.expbox { margin:0 10px 10px; border-radius:10px; padding:11px 13px; font-size:13px; line-height:1.65; display:none; border-left:3px solid; }
-.expbox.show { display:block; }
-.expbox.cexp { background:var(--cbg); border-color:var(--correct); color:#166534; }
-.expbox.wexp { background:var(--wbg); border-color:var(--wrong); color:#991b1b; }
-.exptitle { font-size:11px; font-weight:700; letter-spacing:.8px; text-transform:uppercase; margin-bottom:6px; opacity:.75; }
+  /* Options */
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  .option {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1.5px solid var(--border);
+    background: #f8fafc;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    font-size: 0.84rem;
+    line-height: 1.5;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
+  .option:hover:not(.disabled) { border-color: var(--primary); background: var(--primary-light); }
+  .option.disabled { cursor: default; }
+  .option-letter {
+    min-width: 22px; height: 22px;
+    border-radius: 50%;
+    background: var(--border);
+    color: var(--muted);
+    font-size: 0.72rem;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+    transition: all 0.15s;
+  }
+  .option-text { flex: 1; }
 
-/* FINISH */
-.finish { display:none; background:var(--white); border:1.5px solid var(--border); border-radius:14px; padding:28px 20px; text-align:center; margin-bottom:14px; }
-.finish.show { display:block; }
-.femoji { font-size:46px; margin-bottom:10px; }
-.fscore { font-size:36px; font-weight:700; color:var(--neg); }
-.fsub { color:var(--muted); font-size:13px; margin-top:6px; }
-.fbtn { margin-top:18px; background:var(--neg); color:#fff; border:none; font-family:'Poppins',sans-serif; font-size:14px; font-weight:600; padding:10px 28px; border-radius:100px; cursor:pointer; }
+  /* States */
+  .option.correct { border-color: var(--success); background: var(--success-light); }
+  .option.correct .option-letter { background: var(--success); color: #fff; }
+  .option.wrong { border-color: var(--danger); background: var(--danger-light); }
+  .option.wrong .option-letter { background: var(--danger); color: #fff; }
 
-footer { text-align:center; padding:20px 20px 40px; color:var(--muted); font-size:12px; border-top:1px solid var(--border); }
+  /* Feedback */
+  .feedback {
+    margin-top: 12px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    line-height: 1.6;
+    display: none;
+  }
+  .feedback.show { display: block; }
+  .feedback.correct-fb { background: var(--success-light); color: #166534; border-left: 3px solid var(--success); }
+  .feedback.wrong-fb { background: var(--danger-light); color: #991b1b; border-left: 3px solid var(--danger); }
+  .feedback-header { font-weight: 600; margin-bottom: 4px; font-size: 0.83rem; }
+
+  /* Final result */
+  .result-card {
+    background: var(--primary);
+    color: #fff;
+    border-radius: var(--radius);
+    padding: 24px 20px;
+    text-align: center;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 20px rgba(37,99,235,0.2);
+  }
+  .result-card .big-score { font-size: 3.5rem; font-weight: 700; line-height: 1; }
+  .result-card .score-label { font-size: 0.85rem; opacity: 0.85; margin-top: 4px; }
+  .result-card .score-detail { font-size: 0.8rem; opacity: 0.75; margin-top: 8px; }
+  .result-card .emoji { font-size: 2rem; margin-bottom: 8px; }
+
+  /* Sticky bottom bar */
+  .bottom-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: #fff;
+    border-top: 1px solid var(--border);
+    padding: 10px 16px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    z-index: 100;
+    box-shadow: 0 -2px 12px rgba(0,0,0,0.06);
+  }
+  .btn {
+    flex: 1;
+    max-width: 260px;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.15s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .btn-primary { background: var(--primary); color: #fff; }
+  .btn-primary:hover { background: #1d4ed8; }
+  .btn-secondary { background: var(--border); color: var(--text); }
+  .btn-secondary:hover { background: #cbd5e1; }
+  .btn:disabled { opacity: 0.4; cursor: default; }
+
+  /* Scroll to top */
+  .scroll-top {
+    position: fixed;
+    bottom: 74px; right: 16px;
+    width: 40px; height: 40px;
+    background: var(--primary);
+    color: #fff;
+    border-radius: 50%;
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(37,99,235,0.3);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 99;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .scroll-top.show { display: flex; }
 </style>
 </head>
 <body>
 
-<div class="hero">
-  <div class="hero-badge">Bahasa Indonesia · Kelas X</div>
-  <h1>Latihan Soal <span>Pilihan Ganda</span> 📝</h1>
-  <p>Pilih jawaban kamu · Langsung tahu benar atau salah  · BY DEVOTA ERLAN SAKUR</p>
-</div>
-
-<div class="score-bar">
-  <div class="score-pills">
-    <div class="pill pill-a"><div class="dot"></div><span id="cntA">0</span>/50 Dijawab</div>
-    <div class="pill pill-c"><div class="dot"></div><span id="cntC">0</span> Benar</div>
-    <div class="pill pill-w"><div class="dot"></div><span id="cntW">0</span> Salah</div>
+<div class="header">
+  <h1>📚 Latihan Bahasa Indonesia Kelas X</h1>
+  <p>Asesmen Sumatif Akhir Semester</p>
+  <div class="progress-wrap">
+    <div class="progress-bar" id="progressBar" style="width:0%"></div>
   </div>
-  <button class="reset-btn" onclick="resetAll()">🔄 Reset</button>
-</div>
-
-<div class="prog-wrap">
-  <div class="prog-track"><div class="prog-fill" id="progFill"></div></div>
-  <div class="prog-label" id="progLabel">0 dari 50 soal selesai</div>
-</div>
-
-<div class="tabs-wrap">
-  <div class="tabs">
-    <button class="tab-btn tneg active" onclick="switchTab('nego',this)">🤝 Negosiasi</button>
-    <button class="tab-btn tbio"        onclick="switchTab('bio',this)">📖 Biografi</button>
-    <button class="tab-btn tpui"        onclick="switchTab('puisi',this)">🎭 Puisi</button>
-    <button class="tab-btn tall"        onclick="switchTab('all',this)">📋 Semua</button>
+  <div class="progress-label" id="progressLabel">0 dari 50 soal dijawab</div>
+  <div class="score-summary">
+    <span class="s-correct" id="correctCount">✓ 0 Benar</span>
+    <span class="s-wrong" id="wrongCount">✗ 0 Salah</span>
   </div>
 </div>
 
-<div id="section-nego"  class="section active"><div class="sec-label">Negosiasi · No. 1–14</div><div id="c-nego"></div></div>
-<div id="section-bio"   class="section"><div class="sec-label">Biografi · No. 15–30</div><div id="c-bio"></div></div>
-<div id="section-puisi" class="section"><div class="sec-label">Puisi · No. 31–50</div><div id="c-pui"></div></div>
-<div id="section-all"   class="section">
-  <div class="finish" id="finishBox">
-    <div class="femoji" id="fEmoji">🎉</div>
-    <div class="fscore" id="fScore"></div>
-    <div class="fsub"   id="fSub"></div>
-    <button class="fbtn" onclick="resetAll()">Ulangi Lagi</button>
-  </div>
-  <div class="sec-label">Semua Soal · No. 1–50</div>
-  <div id="c-all"></div>
+<div class="main" id="main"></div>
+
+<div class="bottom-bar">
+  <button class="btn btn-secondary" onclick="scrollToUnanswered()">Soal Belum Dijawab</button>
+  <button class="btn btn-primary" onclick="showFinalResult()" id="finalBtn">Lihat Nilai Akhir</button>
 </div>
 
-<footer>Latihan Soal Bahasa Indonesia · Belajar mandiri lebih seru 💪</footer>
+<button class="scroll-top" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 <script>
-const QS = [
-  {no:1,cat:'neg',ans:'C',q:'Dalam teks negosiasi, pihak yang disebut sebagai pengaju atau pemohon adalah…',
-   opts:{A:'Pihak yang menjadi penengah',B:'Pihak yang menolak permintaan',C:'Pihak yang menyampaikan pengajuan atau permintaan',D:'Pihak yang memberikan persetujuan akhir',E:'Pihak yang membuat kontrak tertulis'},
-   why:'Lu masuk warung, lu bilang "Bang, ada rokok Dji Sam Soe?" — Lu yang buka obrolan buat minta/ngajuin barang. Pembeli itu inisiator pengajuan, bukan penengah dan bukan penolak.'},
-  {no:2,cat:'neg',ans:'B',q:'Tujuan utama Rani menawar harga sepatu dalam teks negosiasi adalah…',
-   opts:{A:'Memperlihatkan kemampuan menawar kepada penjual',B:'Mendapatkan kesepakatan harga yang menguntungkan kedua belah pihak',C:'Sekadar mencoba pengalaman bernegosiasi',D:'Mencari warna sepatu yang cocok',E:'Membandingkan harga antar toko'},
-   why:'Kenapa orang nawar di pasar? Biar nggak kemahalan, tapi abangnya tetep dapet untung. Win-Win Solution. Kalo cuma pamer nawar, mending window shopping aja.'},
-  {no:3,cat:'neg',ans:'D',q:'Kalimat yang menunjukkan tahap persetujuan dalam negosiasi adalah…',
-   opts:{A:'"Berapa harga yang Anda minta?"',B:'"Saya rasa harganya masih bisa diturunkan."',C:'"Boleh saya lihat model lainnya?"',D:'"Baiklah, kalau dua pasang, saya setujui Rp155.000,00 per pasang."',E:'"Kami belum bisa memutuskan sekarang."'},
-   why:'Kata kuncinya: "SETUJUI". Persetujuan ya pas dua-duanya bilang deal/setuju. Sesederhana itu.'},
-  {no:4,cat:'neg',ans:'C',q:'Dalam struktur negosiasi laptop, kalimat yang termasuk tahap "permintaan" adalah…',
-   opts:{A:'"Harganya berapa, Pak?"',B:'"Warnanya ada hitam tidak?"',C:'"Pak, laptop yang ini sudah termasuk tas dan mouse-nya?"',D:'"Kalau Rp5.300.000 boleh, Pak?"',E:'"Saya mau yang prosesornya paling cepat."'},
-   why:'Urutan negosiasi: Nanya spesifikasi (Permintaan) → Dijawab (Pemenuhan) → Nawar harga (Penawaran). Nanya "dapet mouse nggak?" = me-request spesifikasi = Permintaan.'},
-  {no:5,cat:'neg',ans:'C',q:'Dialog: Rani berkata "Rp5,3 juta boleh, Pak?" lalu dijawab "Baiklah, setuju." Tahapan yang terjadi adalah…',
-   opts:{A:'Orientasi – penawaran',B:'Permintaan – pemenuhan',C:'Menawar – menerima tawaran',D:'Penawaran – penolakan',E:'Pemenuhan – persetujuan'},
-   why:'Rani bilang "5,3 juta boleh?" (Nawar). Abangnya bilang "Baiklah... setuju" (Menerima tawaran). Sesimpel "Bang, 5 ribu ya?" → "Yaudah ambil."'},
-  {no:6,cat:'neg',ans:'B',q:'Pernyataan yang TIDAK SESUAI dengan isi Pasal 4 perjanjian sewa adalah…',
-   opts:{A:'Pihak II dilarang mengalihkan hak sewa kepada pihak lain',B:'Pihak II boleh memindahkan hak sewa kepada siapa saja tanpa izin',C:'Pengalihan hak sewa harus mendapat persetujuan Pihak I',D:'Pelanggaran Pasal 4 dapat mengakibatkan pemutusan kontrak',E:'Hak sewa bersifat pribadi dan tidak dapat dipindahkan'},
-   why:'Di Pasal 4 ditulis gede: "Pihak II DILARANG mengalihkan hak sewa...". Opsi B bilang "boleh". Jelas B BERLAWANAN sama teks.'},
-  {no:7,cat:'neg',ans:'C',q:'Kalimat Pak RT yang paling tepat saat menengahi sengketa antara Bu Heni dan Pak Dono adalah…',
-   opts:{A:'"Pak Dono pasti bersalah dalam kasus ini."',B:'"Bu Heni, tuntutan Anda tidak masuk akal."',C:'"Kita tidak boleh langsung menilai orang… Baik, Pak RT. Saya setuju."',D:'"Saya putuskan Pak Dono harus membayar ganti rugi."',E:'"Bu Heni yang paling benar dalam perkara ini."'},
-   why:'Pak RT harus netral. RT yang bener pasti bilang "Dengerin dulu penjelasan orangnya, jangan main hakim sendiri." Kalo main mutusin sepihak, itu namanya diktator.'},
-  {no:8,cat:'neg',ans:'B',q:'Kalimat yang tidak koheren dan perlu dihilangkan dari dialog negosiasi tiket konser adalah…',
-   opts:{A:'Kalimat 1 dan 4',B:'Kalimat 2 dan 3',C:'Kalimat 3 dan 5',D:'Kalimat 4 dan 5',E:'Kalimat 1 dan 2'},
-   why:'Bayangin lu nawarin tiket konser, tiba-tiba temen nge-spam: "Emak gue suka nonton dangdut." Nggak nyambung! Buang kalimat 2 & 3, dialognya jadi mulus: "Mau beli tiket?" → "Menarik. Harganya berapa?"'},
-  {no:9,cat:'neg',ans:'D',q:'"Kami siap menyelesaikan proyek lebih cepat, asalkan harganya cocok." Fungsi bahasa kalimat ini adalah…',
-   opts:{A:'Informatif',B:'Interogatif',C:'Ekspresif',D:'Persuasif',E:'Imperatif'},
-   why:'Kalimatnya pake iming-iming: "Kami siap selesaiin proyek lebih cepet lho, asal harganya cocok." Ini jurus ngebujuk alias merayu = Persuasif.'},
-  {no:10,cat:'neg',ans:'C',q:'"Apakah harga tersebut sudah termasuk biaya pengiriman?" Jenis kalimat ini adalah…',
-   opts:{A:'Deklaratif',B:'Imperatif',C:'Interogatif',D:'Persuasif',E:'Ekslamatif'},
-   why:'Ada tanda tanya "?" dan kata tanya "Apakah". Anak SD juga tau itu kalimat tanya. Istilah kerennya: Interogatif.'},
-  {no:11,cat:'neg',ans:'D',q:'Bagian negosiasi yang ditandai kalimat "Setuju, mari kita tandatangani kontraknya" adalah…',
-   opts:{A:'Orientasi',B:'Penawaran',C:'Permintaan',D:'Penutup / Persetujuan',E:'Pemenuhan'},
-   why:'Kalo udah keluar kata "Setuju" terus lanjut "Tandatangan kontrak", dramanya udah kelar. Ini bagian ending alias penutup/persetujuan.'},
-  {no:12,cat:'neg',ans:'C',q:'Kalimat persuasif paling efektif dalam negosiasi bisnis adalah…',
-   opts:{A:'"Produk kami sudah terkenal di mana-mana."',B:'"Kami tidak bisa menurunkan harga lagi."',C:'"Jika Bapak setuju dengan harga ini, kami akan menambah volume pemesanan."',D:'"Tolong pertimbangkan penawaran kami."',E:'"Harga kami sudah paling murah di pasaran."'},
-   why:'Bujukan paling ampuh di dunia bisnis: "Kalo lu kasih murah, gw borong dah!" — menambah volume pesanan adalah iming-iming nyata.'},
-  {no:13,cat:'neg',ans:'D',q:'Tujuan akhir dari kegiatan bernegosiasi adalah…',
-   opts:{A:'Mengalahkan lawan bicara dengan argumen terkuat',B:'Mendapatkan keuntungan sepihak sebesar mungkin',C:'Menampilkan kemampuan berbicara',D:'Kesepakatan yang menguntungkan semua pihak',E:'Memperpanjang waktu diskusi'},
-   why:'Definisi hakiki bernegosiasi: cari titik tengah yang fair. Nggak ada ceritanya negosiasi buat nyari musuh atau bikin bangkrut orang lain.'},
-  {no:14,cat:'neg',ans:'B',q:'"Boleh saya lihat model lainnya?" dijawab "Silakan, ini pilihannya." Struktur negosiasi ini adalah…',
-   opts:{A:'Penawaran – menerima tawaran',B:'Meminta – memenuhi permintaan',C:'Orientasi – pemenuhan',D:'Negosiasi – persetujuan',E:'Permintaan – penolakan'},
-   why:'"Boleh liat model lain?" (Meminta). "Silakan, ini pilihannya." (Dipenuhi). Sesimpel itu.'},
+const questions = [
+  // ============ NEGOSIASI (1-14) ============
+  {
+    passage: `<div class="passage"><div class="passage-title">Teks Negosiasi 1 (untuk soal nomor 1–3)</div><div class="dialogue"><p>Pembeli : "Selamat pagi, Kak."</p><p>Penjual : "Selamat pagi. Silakan, ada yang bisa dibantu?"</p><p>Pembeli : "Saya mau cari sepatu sekolah warna hitam. Yang ini berapa harganya?"</p><p>Penjual : "Yang itu Rp180.000,00, Kak."</p><p>Pembeli : "Wah, agak mahal. Boleh kurang tidak, Kak? Rp140.000,00 saja?"</p><p>Penjual : "Maaf, Kak. Belum bisa segitu. Bagaimana kalau Rp165.000,00? Sudah harga pas ini."</p><p>Pembeli : "Rp155.000,00 ya, Kak. Saya beli dua pasang sekalian."</p><p>Penjual : "Baiklah, kalau dua pasang, saya setujui Rp155.000,00 per pasang."</p></div></div>`,
+    num: 1,
+    text: "Peran Pembeli dalam teks negosiasi tersebut adalah ....",
+    options: ["Pihak yang menyampaikan penawaran harga barang","Pihak yang berperan sebagai penengah atau mediator","Pihak yang menyampaikan pengajuan atau permintaan","Pihak yang mendukung mosi dalam debat","Pihak yang menolak seluruh negosiasi tanpa alasan"],
+    answer: 2,
+    explanation: "Dalam teks negosiasi, pembeli berperan sebagai pihak yang mengajukan permintaan atau pengajuan, yaitu pihak yang membutuhkan barang dan mengajukan penawaran harga agar sesuai keinginannya."
+  },
+  {
+    num: 2,
+    text: "Tujuan dari negosiasi dalam kutipan teks tersebut adalah ....",
+    options: ["Mencari toko sepatu yang menjual barang berkualitas tinggi","Mendapatkan kesepakatan harga sepatu yang menguntungkan kedua belah pihak","Membuktikan bahwa pembeli pandai menawar harga","Mengetahui jenis dan model sepatu terbaru","Menentukan warna sepatu sekolah yang paling bagus"],
+    answer: 1,
+    explanation: "Tujuan negosiasi adalah mencapai kesepakatan yang menguntungkan kedua pihak. Dalam teks, pembeli dan penjual akhirnya sepakat di harga Rp155.000,00 per pasang untuk dua pasang sepatu."
+  },
+  {
+    num: 3,
+    text: "Bagian persetujuan dalam kutipan teks negosiasi tersebut ditunjukkan pada kalimat ....",
+    options: ['"Selamat pagi, Kak."','"Yang itu Rp180.000,00, Kak."','"Boleh kurang tidak, Kak? Rp140.000,00 saja?"','"Baiklah, kalau dua pasang, saya setujui Rp155.000,00 per pasang."','"Saya mau cari sepatu sekolah warna hitam."'],
+    answer: 3,
+    explanation: 'Bagian persetujuan (agreement) ditandai dengan kata "Baiklah" dan "saya setujui", yang menunjukkan kesepakatan penjual atas harga yang diajukan pembeli.'
+  },
+  {
+    passage: `<div class="passage"><div class="passage-title">Teks Negosiasi 2 (untuk soal nomor 4–5)</div><div class="dialogue"><p>Rani : "Pak, laptop yang ini sudah termasuk tas dan mouse-nya?"</p><p>Penjual : "Belum, Kak. Itu harga laptop saja, Rp5.200.000,00."</p><p>Rani : "Kalau saya beli paket lengkap dengan tas dan mouse, bisa kurang tidak, Pak?"</p><p>Penjual : "Bisa. Kalau paket lengkap, saya kasih Rp5.500.000,00 sudah termasuk semua."</p><p>Rani : "Rp5.300.000,00 boleh, Pak? Saya bayar tunai sekarang."</p><p>Penjual : "Baiklah, Rp5.300.000,00 saya setuju."</p></div></div>`,
+    num: 4,
+    text: "Bagian permintaan dari teks negosiasi tersebut ditunjukkan pada kalimat ....",
+    options: ['"Baiklah, Rp5.300.000,00 saya setuju."','"Belum, Kak. Itu harga laptop saja, Rp5.200.000,00."','"Pak, laptop yang ini sudah termasuk tas dan mouse-nya?"','"Rp5.300.000,00 boleh, Pak? Saya bayar tunai sekarang."','"Bisa. Kalau paket lengkap, saya kasih Rp5.500.000,00."'],
+    answer: 3,
+    explanation: '"Rp5.300.000,00 boleh, Pak? Saya bayar tunai sekarang." adalah bagian permintaan karena Rani mengajukan permohonan/penawaran harga kepada penjual disertai alasan (bayar tunai).'
+  },
+  {
+    num: 5,
+    text: 'Jenis tuturan pasangan berikut termasuk ....\nRani: "Rp5.300.000,00 boleh, Pak?"\nPenjual: "Baiklah, Rp5.300.000,00 saya setuju."',
+    options: ["Bertanya – menjawab","Mengucap salam – menjawab salam","Menawar – menerima tawaran","Mengusulkan – menolak usulan","Meminta – menolak permintaan"],
+    answer: 2,
+    explanation: "Rani menawar harga dengan mengajukan angka Rp5.300.000,00, lalu penjual menerima tawaran tersebut dengan kata 'Baiklah, saya setuju.' Ini adalah pasangan tuturan menawar–menerima tawaran."
+  },
+  {
+    passage: `<div class="passage"><div class="passage-title">Surat Perjanjian Sewa Kios (untuk soal nomor 6)</div><p>Pasal 1: Pihak I sebagai pemilik sah menyewakan sebuah kios seluas 12 m² yang terletak di Jalan Sudirman No. 5, Surabaya kepada Pihak II.</p><p>Pasal 2: Harga sewa Rp24.000.000,00 per tahun, dibayar di muka.</p><p>Pasal 3: Biaya perawatan dan listrik ditanggung oleh Pihak II.</p><p>Pasal 4: Pihak II dilarang mengalihkan hak sewa kepada pihak lain tanpa persetujuan Pihak I.</p><p>Pasal 5: Biaya administrasi dan materai ditanggung bersama.</p></div>`,
+    num: 6,
+    text: "Pernyataan yang tidak sesuai dengan isi surat perjanjian sewa kios di atas adalah ....",
+    options: ["Kios yang disewakan terletak di Jalan Sudirman No. 5, Surabaya.","Pihak II boleh memindahkan hak sewa kepada siapa saja tanpa izin.","Harga sewa kios adalah Rp24.000.000,00 per tahun.","Biaya listrik dan perawatan menjadi tanggung jawab Pihak II.","Biaya administrasi ditanggung bersama kedua pihak."],
+    answer: 1,
+    explanation: "Pasal 4 menyatakan bahwa Pihak II dilarang mengalihkan hak sewa tanpa persetujuan Pihak I. Jadi, pernyataan bahwa Pihak II boleh memindahkan hak sewa kepada siapa saja tanpa izin adalah tidak sesuai/salah."
+  },
+  {
+    passage: `<div class="passage"><div class="passage-title">Teks Negosiasi 3 (untuk soal nomor 7–8)</div><div class="dialogue"><p>Bu Heni : Saya tidak setuju kalau Pak Rudi yang jadi ketua panitia HUT RT. Ia sering tidak hadir rapat. (1)</p><p>Pak Dono : Menurut saya, Pak Rudi masih bisa dipercaya. Selama ini, acaranya selalu sukses berkat dia. (2)</p><p>Bu Heni : Betul acaranya sukses, tapi proses persiapannya selalu berantakan karena dia jarang muncul. (3)</p><p>Pak RT : ...... (4)</p><p>Bu Heni : ...... (5)</p></div></div>`,
+    num: 7,
+    text: "Kalimat yang tepat untuk melengkapi negosiasi tersebut pada bagian (4) dan (5) adalah ....",
+    options: ["(4) Baiklah, kita pilih Pak Rudi lagi saja. Dia pasti bisa. (5) Iya, saya setuju Pak Rudi tetap jadi ketua.","(4) Mari kita dengarkan dulu alasan Bu Heni secara lengkap. (5) Tidak ada gunanya mendengarkan. Pak Rudi saja yang ketua.","(4) Kita tidak boleh langsung menilai orang. Lebih baik kita beri Pak Rudi kesempatan menjelaskan, lalu kita putuskan bersama. (5) Baik, Pak RT. Saya setuju kita putuskan bersama setelah mendengar penjelasan Pak Rudi.","(4) Sudahlah, kita tunjuk saja orang lain tanpa diskusi panjang. (5) Saya setuju, yang penting acaranya selesai.","(4) Pak Rudi memang tidak cocok jadi ketua. Ganti saja langsung. (5) Betul, Pak RT. Saya setuju diganti sekarang."],
+    answer: 2,
+    explanation: "Pak RT berperan sebagai mediator yang menjaga suasana tetap kondusif. Kalimat C paling tepat karena menunjukkan sikap netral, memberi kesempatan semua pihak didengar, dan mengajak keputusan bersama—sesuai fungsi mediator dalam negosiasi."
+  },
+  {
+    num: 8,
+    text: "Dalam penyuntingan teks negosiasi, pernyataan yang harus dihilangkan karena tidak padu adalah ....\n(1) Tari: \"Vin, aku punya dua tiket konser yang sama.\"\n(2) Vina: \"Ibu kandungku senang menonton konser musik klasik.\"\n(3) Tari: \"Bagaimana? Kamu tertarik?\"\n(4) Vina: \"Menarik juga. Berapa harganya?\"\n(5) Tari: \"Rp120.000,00. Gimana?\"\n(6) Vina: \"Belum ada uang. Barter dengan novel baruku plus Rp30.000,00 bisa?\"\n(7) Tari: \"Boleh, deal!\"",
+    options: ["1 dan 2","2 dan 3","3 dan 5","4 dan 6","6 dan 7"],
+    answer: 1,
+    explanation: "Kalimat (2) 'Ibu kandungku senang menonton konser musik klasik' tidak padu karena tidak relevan dengan konteks negosiasi jual-beli tiket. Kalimat itu hanya informasi tambahan yang tidak mempengaruhi jalannya negosiasi."
+  },
+  {
+    num: 9,
+    text: '"Mohon pertimbangkan kembali, Pak. Kami siap menyelesaikan proyek lebih cepat asal anggarannya disesuaikan."\nKalimat di atas termasuk kalimat ....',
+    options: ["deklaratif","interogatif","imperatif","persuasif","deskriptif"],
+    answer: 3,
+    explanation: "Kalimat persuasif bertujuan membujuk atau memengaruhi pihak lain agar mau mempertimbangkan sesuatu. Kalimat di atas berusaha meyakinkan/membujuk pihak lain dengan memberikan janji (proyek lebih cepat) sebagai imbalan penyesuaian anggaran."
+  },
+  {
+    num: 10,
+    text: '"Apakah bisa harganya sedikit diturunkan, Pak?"\nKalimat di atas termasuk dalam kalimat ....',
+    options: ["imperatif","deklaratif","interogatif","persuasif","deskriptif"],
+    answer: 2,
+    explanation: "Kalimat interogatif adalah kalimat yang mengandung pertanyaan, ditandai dengan kata tanya 'Apakah' dan diakhiri tanda tanya. Kalimat ini menanyakan kemungkinan penurunan harga."
+  },
+  {
+    num: 11,
+    text: '"Baik, saya setuju dengan harga tersebut. Kita tandatangani kontraknya sekarang."\nKalimat tersebut terdapat pada bagian ....',
+    options: ["orientasi","pengajuan","penawaran","penutup / persetujuan","permintaan"],
+    answer: 3,
+    explanation: "Kalimat yang menyatakan setuju dan mengajak menandatangani kontrak menunjukkan bahwa negosiasi telah selesai dan mencapai kesepakatan. Ini termasuk bagian penutup/persetujuan dalam struktur teks negosiasi."
+  },
+  {
+    num: 12,
+    text: "Kalimat persuasif yang paling tepat digunakan dalam negosiasi adalah ....",
+    options: ['"Ini harganya berapa, Pak?"','"Kami tidak mau harga itu. Tidak mungkin!"','"Jika Bapak setuju dengan harga ini, kami akan menambah volume pemesanan."','"Harganya Rp500.000,00."','"Besok saja kita bicarakan."'],
+    answer: 2,
+    explanation: "Kalimat C adalah kalimat persuasif karena mengajak/membujuk pihak lain dengan menawarkan keuntungan (penambahan volume pemesanan) jika pihak lain mau menyetujui harga yang ditawarkan."
+  },
+  {
+    num: 13,
+    text: "Bernegosiasi artinya kegiatan tawar-menawar melalui perundingan untuk mencapai ....",
+    options: ["kemenangan satu pihak","kerugian bersama","perselisihan yang berkepanjangan","kesepakatan yang menguntungkan semua pihak","kepuasan penjual semata"],
+    answer: 3,
+    explanation: "Negosiasi adalah proses perundingan yang bertujuan mencapai kesepakatan yang menguntungkan semua pihak yang terlibat (win-win solution), bukan menguntungkan satu pihak saja."
+  },
+  {
+    num: 14,
+    text: 'Pasangan tuturan berikut:\nPembeli: "Boleh saya lihat modelnya yang lain, Pak?"\nPenjual: "Tentu, silakan. Ini ada beberapa pilihan model terbaru."\nJenis tuturan pasangan tersebut adalah ....',
+    options: ["menawar – menolak tawaran","meminta – memenuhi permintaan","mengucap salam – menjawab salam","mengusulkan – menolak usulan","bertanya – menjawab"],
+    answer: 4,
+    explanation: "Pembeli meminta untuk melihat model lain, dan penjual memenuhi permintaan tersebut dengan mempersilakan dan menunjukkan pilihan. Ini adalah pasangan tuturan meminta–memenuhi permintaan."
+  },
 
-  // BIOGRAFI
-  {no:15,cat:'bio',ans:'E',q:'Paragraf pembuka biografi Kartini yang memperkenalkan nama, tempat lahir, dan asal-usulnya termasuk struktur…',
-   opts:{A:'Reorientasi',B:'Peristiwa penting',C:'Komplikasi',D:'Koda',E:'Orientasi'},
-   why:'Teksnya baru mulai, ngenalin nama Kartini, lahir di mana, anak siapa. Di film, ini opening scene buat ngenalin tokoh utama = Orientasi.'},
-  {no:16,cat:'bio',ans:'B',q:'Karakter Kartini yang paling menonjol berdasarkan teks biografi adalah…',
-   opts:{A:'Mudah menyerah menghadapi tekanan adat',B:'Pantang menyerah dan bersemangat memajukan kaum perempuan meski terhalang adat',C:'Lebih mengutamakan kehidupan pribadi',D:'Tidak peduli dengan nasib perempuan',E:'Hanya fokus belajar bahasa Belanda tanpa tujuan'},
-   why:'"Meski terbelenggu adat, semangat Kartini tidak padam." Udah dikurung pingitan, tapi tetep nekat baca buku bahasa Belanda. Mental baja.'},
-  {no:17,cat:'bio',ans:'D',q:'Kata kerja mental yang tepat untuk melengkapi "Kartini … harapan agar perempuan dapat menikmati pendidikan setara" adalah…',
-   opts:{A:'Lahir',B:'Tumbuh',C:'Mengenyam',D:'Mengungkapkan',E:'Berjalan'},
-   why:'Kata kerja mental = proses di otak/perasaan. "Mengungkapkan harapan" = mentransfer isi pikiran ke wujud bahasa. "Lahir" atau "mengenyam" itu kejadian fisik.'},
-  {no:18,cat:'bio',ans:'C',q:'Bagian teks biografi Susi Pudjiastuti yang paling banyak dibahas adalah…',
-   opts:{A:'Tempat dan tanggal lahir',B:'Hubungan pribadi dengan keluarga',C:'Keunggulan dan prestasi tokoh',D:'Kesulitan finansial di masa kecil',E:'Pendidikan formal yang ditempuh'},
-   why:'Teks Susi isinya pamer prestasi: punya maskapai, jadi Menteri, sampe ngebom kapal asing. Ini nge-highlight keunggulan, bukan sekadar biodata.'},
-  {no:19,cat:'bio',ans:'B',q:'Teks biografi Susi Pudjiastuti yang sangat singkat mengandung dua struktur sekaligus, yaitu…',
-   opts:{A:'Orientasi dan reorientasi',B:'Orientasi dan peristiwa penting',C:'Peristiwa penting dan koda',D:'Komplikasi dan resolusi',E:'Reorientasi dan koda'},
-   why:'Di awal disebutin lahir di mana (Orientasi), lalu langsung nge-gas nyeritain bikin maskapai dan jadi menteri (Peristiwa penting). Dua bagian dalam satu paragraf singkat.'},
-  {no:20,cat:'bio',ans:'E',q:'Kata yang BUKAN konjungsi temporal adalah…',
-   opts:{A:'Kemudian',B:'Setelah itu',C:'Lalu',D:'Selanjutnya',E:'Tetapi'},
-   why:'"Temporal" = urusan WAKTU (setelah itu, kemudian, lalu, selanjutnya). Kata "tetapi" dipake buat pertentangan — bukan urusan waktu.'},
-  {no:21,cat:'bio',ans:'C',q:'Teks biografi Nelson Mandela yang menceritakan penjara 27 tahun dan perjuangan lawan apartheid termasuk struktur…',
-   opts:{A:'Orientasi',B:'Reorientasi',C:'Peristiwa dan masalah',D:'Koda',E:'Komplikasi awal'},
-   why:'Teks ini nyeritain Mandela dipenjara 27 tahun (masalah berat) dan berjuang lawan apartheid (peristiwa). Itulah inti dari bagian peristiwa dan masalah.'},
-  {no:22,cat:'bio',ans:'B',q:'Kalimat yang menggunakan pronomina persona adalah…',
-   opts:{A:'Mandela lahir di Afrika Selatan pada 1918.',B:'Sejak muda, ia sudah merasakan ketidakadilan sistem apartheid.',C:'Apartheid adalah sistem pemisahan ras yang kejam.',D:'Penjara Robben Island menjadi tempat penahanannya.',E:'Tahun 1994 menjadi tonggak demokrasi Afrika Selatan.'},
-   why:'Pronomina persona = kata ganti orang: aku, kamu, dia, ia, mereka. Cari opsi yang ada kata "ia". Cuma ada di opsi B.'},
-  {no:23,cat:'bio',ans:'B',q:'Tokoh dalam teks biografi dikenal dengan predikat internasional sebagai…',
-   opts:{A:'Presiden terlama di Afrika',B:'Salah satu menteri keuangan terbaik di dunia',C:'Peraih Nobel Perdamaian pertama dari Asia',D:'Pemimpin revolusi terbesar abad ke-20',E:'Ekonom paling berpengaruh versi Forbes'},
-   why:'Tinggal baca teks paling bawah: "Ia dikenal sebagai salah satu menteri keuangan terbaik di dunia...".'},
-  {no:24,cat:'bio',ans:'E',q:'Kalimat pertama biografi yang menyebutkan nama lengkap, gelar, dan tempat tanggal lahir tokoh termasuk bagian…',
-   opts:{A:'Koda',B:'Peristiwa penting',C:'Komplikasi',D:'Reorientasi',E:'Orientasi'},
-   why:'Kalimat pertama ngenalin nama lengkap, gelar, tempat tanggal lahir. Gerbang awal kenalan = Orientasi.'},
-  {no:25,cat:'bio',ans:'C',q:'Pola pengembangan paragraf teks biografi yang menceritakan kronologi hidup tokoh dari awal sampai akhir adalah…',
-   opts:{A:'Deduktif',B:'Induktif',C:'Naratif',D:'Deskriptif',E:'Argumentatif'},
-   why:'Teks biografi itu aslinya Naratif (bercerita). Gagasan utamanya ngalir kayak orang ngedongeng kronologis dari lahir sampe sukses.'},
-  {no:26,cat:'bio',ans:'C',q:'Isi teks biografi yang membedakannya dari fiksi adalah…',
-   opts:{A:'Menggunakan bahasa yang indah dan puitis',B:'Menceritakan kisah yang dramatis',C:'Fakta kehidupan tokoh',D:'Mengandung pesan moral',E:'Ditulis dari sudut pandang orang pertama'},
-   why:'Biografi = Sejarah asli. Harus fakta. Kalo isinya khayalan mah mending nulis Wattpad.'},
-  {no:27,cat:'bio',ans:'D',q:'Bagian akhir biografi tempat penulis memberikan komentar atau kesimpulan tentang tokoh disebut…',
-   opts:{A:'Orientasi',B:'Peristiwa penting',C:'Koda',D:'Reorientasi',E:'Komplikasi'},
-   why:'Di ujung cerita biografi, penulis ngasih kesimpulan/komentar penutup. "Pengarahan ulang" di akhir = RE-orientasi.'},
-  {no:28,cat:'bio',ans:'D',q:'Fungsi bagian orientasi dalam teks biografi adalah…',
-   opts:{A:'Menceritakan puncak konflik kehidupan tokoh',B:'Memberikan penilaian penulis terhadap tokoh',C:'Menyimpulkan pesan moral dari kehidupan tokoh',D:'Pengenalan dan gambaran umum mengenai tokoh',E:'Mendeskripsikan lingkungan tempat tinggal tokoh'},
-   why:'Orientasi = Masa Orientasi Siswa (MOS). Tujuannya buat apa? Buat KENALAN. Pengenalan tokoh secara umum.'},
-  {no:29,cat:'bio',ans:'C',q:'Urutan struktur teks biografi yang benar adalah…',
-   opts:{A:'Orientasi – Koda – Peristiwa Penting',B:'Peristiwa Penting – Orientasi – Reorientasi',C:'Orientasi – Peristiwa/Kejadian Penting – Reorientasi',D:'Orientasi – Komplikasi – Koda',E:'Reorientasi – Orientasi – Peristiwa Penting'},
-   why:'Urutan logis: Kenalan (Orientasi) → Ngelewatin masalah & sukses (Peristiwa Penting) → Kesimpulan penulis (Reorientasi). Koda hanya ada di cerpen/anekdot.'},
-  {no:30,cat:'bio',ans:'C',q:'Bagian biografi Habibie yang menceritakan kebiasaannya membongkar mainan dan kecintaannya pada sains sejak kecil termasuk struktur…',
-   opts:{A:'Orientasi',B:'Reorientasi',C:'Peristiwa dan masalah',D:'Koda',E:'Resolusi'},
-   why:'Menceritakan kelakuan Habibie waktu kecil yang demen ngebongkar mainan dan pinter sains. Itu adalah rentetan kejadian (peristiwa) masa lalunya.'},
+  // ============ BIOGRAFI (15-30) ============
+  {
+    passage: `<div class="passage"><div class="passage-title">Teks Biografi: R.A. Kartini (untuk soal nomor 15–17)</div><p>Raden Adjeng Kartini lahir di Jepara, Jawa Tengah, pada 21 April 1879. Ia merupakan putri dari Bupati Jepara, Raden Mas Adipati Ario Sosroningrat. Sebagai putri bangsawan, Kartini mendapatkan kesempatan mengenyam pendidikan di Europeesche Lagere School (ELS). Namun, tradisi pingitan pada masa itu memaksanya berhenti sekolah setelah lulus dari ELS.</p><p>Meski terbelenggu adat, semangat Kartini untuk memajukan kaum perempuan tidak padam. Ia rajin membaca buku, majalah, dan koran berbahasa Belanda untuk memperluas wawasannya. Ia juga aktif berkorespondensi dengan para sahabat penanya di Belanda. Melalui surat-suratnya, Kartini mengungkapkan harapannya agar perempuan Indonesia dapat memperoleh pendidikan yang setara.</p></div>`,
+    num: 15,
+    text: "Penggalan teks biografi di atas termasuk bagian ....",
+    options: ["reorientasi","resolusi","komplikasi","peristiwa dan masalah","orientasi"],
+    answer: 4,
+    explanation: "Teks di atas memperkenalkan tokoh (nama, tempat lahir, latar belakang keluarga) sekaligus gambaran awal kehidupannya. Ini adalah bagian orientasi dalam struktur teks biografi."
+  },
+  {
+    num: 16,
+    text: "Kepribadian unggul yang ditunjukkan oleh R.A. Kartini dalam teks biografi tersebut adalah ....",
+    options: ["Sombong karena berasal dari keluarga bangsawan","Pantang menyerah dan bersemangat memajukan kaum perempuan meski terhalang adat","Patuh tanpa syarat kepada aturan adat yang berlaku","Ambisius demi kepentingan pribadi semata","Suka bergaul dengan orang Belanda untuk keuntungan sendiri"],
+    answer: 1,
+    explanation: "Teks menjelaskan bahwa meski terbelenggu tradisi pingitan, Kartini tidak menyerah. Ia terus membaca dan berkorespondensi demi kemajuan kaum perempuan. Ini mencerminkan sikap pantang menyerah dan semangat juang yang tinggi."
+  },
+  {
+    num: 17,
+    text: "Kata kerja mental dalam kutipan teks biografi tersebut terdapat pada kata ....",
+    options: ["lahir","memaksanya","mengenyam","mengungkapkan","berkorespondensi"],
+    answer: 3,
+    explanation: "Kata kerja mental adalah kata kerja yang berkaitan dengan proses berpikir, perasaan, atau persepsi. 'Mengungkapkan' adalah kata kerja mental karena berkaitan dengan proses mengekspresikan perasaan/harapan dari dalam diri."
+  },
+  {
+    passage: `<div class="passage"><div class="passage-title">Teks Biografi: Susi Pudjiastuti (untuk soal nomor 18–19)</div><p>Susi Pudjiastuti lahir di Pangandaran, Jawa Barat, pada 15 Januari 1965. Meski tidak menamatkan pendidikan SMA, kegigihan dan kecerdasannya membawanya menjadi pengusaha sukses di bidang perikanan dan penerbangan. Ia mendirikan PT ASI Pudjiastuti Marine Product dan maskapai Susi Air yang melayani daerah-daerah terpencil di Indonesia.</p><p>Pada tahun 2014, Susi Pudjiastuti dipercaya menjabat sebagai Menteri Kelautan dan Perikanan Republik Indonesia. Ia dikenal dengan kebijakan tegas menenggelamkan kapal-kapal asing yang mencuri ikan di perairan Indonesia.</p></div>`,
+    num: 18,
+    text: "Kutipan biografi di atas menonjolkan unsur ....",
+    options: ["keluarga tokoh","biodata lengkap tokoh","keunggulan dan prestasi tokoh","keunikan penampilan tokoh","pekerjaan sehari-hari tokoh"],
+    answer: 2,
+    explanation: "Teks biografi Susi Pudjiastuti menonjolkan pencapaian dan prestasinya: mendirikan perusahaan sukses, menjadi menteri, dan menerapkan kebijakan tegas. Ini termasuk unsur keunggulan dan prestasi tokoh."
+  },
+  {
+    num: 19,
+    text: "Kutipan teks biografi tersebut termasuk dalam bagian struktur ....",
+    options: ["reorientasi","orientasi dan peristiwa penting","komplikasi","resolusi","koda"],
+    answer: 1,
+    explanation: "Teks memperkenalkan tokoh (orientasi) sekaligus memaparkan peristiwa-peristiwa penting dalam hidupnya (mendirikan perusahaan, menjadi menteri). Ini mencakup dua bagian struktur: orientasi dan peristiwa penting."
+  },
+  {
+    num: 20,
+    text: "Berikut adalah contoh konjungsi temporal, kecuali ....",
+    options: ["kemudian","setelah itu","lalu","ketika","tetapi"],
+    answer: 4,
+    explanation: "'Tetapi' adalah konjungsi pertentangan/adversatif, bukan konjungsi temporal. Konjungsi temporal menyatakan hubungan waktu, seperti kemudian, setelah itu, lalu, dan ketika."
+  },
+  {
+    passage: `<div class="passage"><div class="passage-title">Teks Biografi: Nelson Mandela (untuk soal nomor 21–22)</div><p>Nelson Mandela lahir di Mvezo, Afrika Selatan, pada 18 Juli 1918. Sejak muda, ia sudah merasakan ketidakadilan sistem apartheid. Mandela bergabung dengan ANC dan berjuang melawan diskriminasi. Akibat perjuangannya, ia dipenjara selama 27 tahun. Namun, setelah bebas pada 1990, ia tidak menyimpan dendam. Mandela memimpin negosiasi damai yang mengakhiri apartheid dan terpilih sebagai Presiden Afrika Selatan pertama yang dipilih secara demokratis pada tahun 1994.</p></div>`,
+    num: 21,
+    text: "Kutipan teks biografi tersebut diuraikan pada bagian ....",
+    options: ["orientasi","reorientasi","peristiwa dan masalah","resolusi","komplikasi"],
+    answer: 2,
+    explanation: "Teks menceritakan rangkaian peristiwa penting dalam hidup Mandela (bergabung ANC, dipenjara, bebas, menjadi presiden) beserta masalah yang dihadapinya (apartheid). Ini adalah bagian peristiwa dan masalah dalam struktur biografi."
+  },
+  {
+    num: 22,
+    text: "Kalimat yang memuat pronomina persona terdapat pada ....",
+    options: ["Nelson Mandela lahir di Mvezo, Afrika Selatan, pada 18 Juli 1918.","Sejak muda, ia sudah merasakan ketidakadilan sistem apartheid.","Mandela kemudian bergabung dengan African National Congress.","Sistem apartheid memisahkan ras di negaranya.","Apartheid akhirnya berakhir pada tahun 1994."],
+    answer: 1,
+    explanation: "Pronomina persona adalah kata ganti orang. Kalimat B mengandung 'ia' yang merupakan pronomina persona ketiga tunggal, merujuk pada Nelson Mandela."
+  },
+  {
+    passage: `<div class="passage"><div class="passage-title">Teks Biografi: Sri Mulyani (untuk soal nomor 23–25)</div><p>Prof. Dr. Sri Mulyani Indrawati lahir di Tanjung Karang, Lampung, pada 26 Agustus 1962. Ia menamatkan pendidikan sarjananya di FE UI dengan predikat terbaik. Selanjutnya, ia meraih gelar Master dan Doktor di University of Illinois, Amerika Serikat. Sri Mulyani pernah menjabat sebagai Menteri Keuangan RI dua kali dan juga pernah menjadi Managing Director di Bank Dunia. Ia dikenal sebagai salah satu menteri keuangan terbaik di dunia berkat kebijakannya yang tegas dan transparan.</p></div>`,
+    num: 23,
+    text: "Berdasarkan kutipan tersebut, Sri Mulyani dikenal sebagai ....",
+    options: ["Menteri keuangan yang paling lama menjabat","Salah satu menteri keuangan terbaik di dunia","Direktur Utama Bank Indonesia","Presiden Bank Dunia pertama dari Indonesia","Guru besar ekonomi terbaik di Asia"],
+    answer: 1,
+    explanation: "Teks menyatakan secara eksplisit bahwa Sri Mulyani 'dikenal sebagai salah satu menteri keuangan terbaik di dunia berkat kebijakannya yang tegas dan transparan.'"
+  },
+  {
+    num: 24,
+    text: "Kutipan teks biografi tersebut termasuk dalam struktur ....",
+    options: ["reorientasi","komplikasi","peristiwa penting","resolusi","orientasi"],
+    answer: 4,
+    explanation: "Kutipan memperkenalkan Sri Mulyani: tempat lahir, pendidikan, dan gambaran umum karirnya. Ini adalah bagian orientasi dalam struktur teks biografi, yang memberikan pengenalan awal tentang tokoh."
+  },
+  {
+    num: 25,
+    text: "Berdasarkan letak gagasan utamanya, paragraf tersebut termasuk jenis paragraf ....",
+    options: ["induktif","campuran","naratif","deduktif","analogi"],
+    answer: 3,
+    explanation: "Paragraf deduktif menempatkan gagasan utama di awal paragraf. Paragraf biografi Sri Mulyani diawali dengan kalimat utama (memperkenalkan tokoh), lalu diikuti kalimat-kalimat penjelas. Ini adalah pola deduktif."
+  },
+  {
+    num: 26,
+    text: "Biografi merupakan cerita mengenai kisah hidup seseorang yang berisi ....",
+    options: ["khayalan penulis","imajinasi yang bebas","fakta kehidupan tokoh","karangan fiksi","pendapat penulis tentang tokoh"],
+    answer: 2,
+    explanation: "Biografi adalah tulisan yang menceritakan kisah hidup seseorang berdasarkan fakta-fakta nyata tentang kehidupan tokoh tersebut, bukan khayalan atau fiksi."
+  },
+  {
+    num: 27,
+    text: "Bagian akhir teks biografi yang berisi pandangan penulis terhadap tokoh yang diceritakan disebut ....",
+    options: ["orientasi","peristiwa dan masalah","komplikasi","reorientasi","resolusi"],
+    answer: 3,
+    explanation: "Reorientasi adalah bagian penutup teks biografi yang berisi pandangan, komentar, atau penilaian penulis terhadap tokoh yang diceritakan. Bagian ini bersifat opsional."
+  },
+  {
+    num: 28,
+    text: "Bagian orientasi pada teks biografi berisi tentang ....",
+    options: ["Pandangan tokoh terhadap berbagai isu sosial","Peristiwa paling penting yang mengubah hidup tokoh","Masalah terbesar yang dialami tokoh semasa hidup","Pengenalan dan gambaran umum mengenai tokoh","Pandangan penulis terhadap kelemahan tokoh"],
+    answer: 3,
+    explanation: "Orientasi adalah bagian pembuka teks biografi yang berisi pengenalan tokoh secara umum, seperti nama, tempat/tanggal lahir, latar belakang keluarga, dan informasi dasar lainnya."
+  },
+  {
+    num: 29,
+    text: "Urutan yang benar mengenai struktur teks biografi adalah ....",
+    options: ["Reorientasi, Kejadian, Koda","Orientasi, Abstrak, Reorientasi","Orientasi, Peristiwa/Kejadian Penting, Reorientasi","Orientasi, Koda, Peristiwa","Pengenalan, Konflik, Resolusi, Koda"],
+    answer: 2,
+    explanation: "Struktur teks biografi yang benar adalah: (1) Orientasi – pengenalan tokoh, (2) Peristiwa/Kejadian Penting – rangkaian peristiwa dalam hidup tokoh, (3) Reorientasi – pandangan/simpulan penulis."
+  },
+  {
+    passage: `<div class="passage"><div class="passage-title">Kutipan Biografi B.J. Habibie (untuk soal nomor 30)</div><p>Sejak belia, Bacharuddin Jusuf Habibie sudah menunjukkan kecintaannya pada ilmu pengetahuan. Ia sering membongkar dan merakit kembali mainan-mainannya hanya untuk memahami cara kerjanya. Di sekolah, ia selalu menjadi yang terdepan dalam pelajaran matematika dan sains.</p></div>`,
+    num: 30,
+    text: "Kutipan biografi tersebut diuraikan pada bagian ....",
+    options: ["orientasi","reorientasi","peristiwa dan masalah","resolusi","komplikasi"],
+    answer: 2,
+    explanation: "Teks menceritakan peristiwa-peristiwa pada masa kecil Habibie yang berkaitan dengan kepribadian dan bakatnya. Ini adalah bagian peristiwa dan masalah, yang menguraikan kejadian penting dalam kehidupan tokoh."
+  },
 
-  // PUISI
-  {no:31,cat:'pui',ans:'B',q:'Tema utama puisi tentang nelayan yang berangkat subuh-subuh menarik jala adalah…',
-   opts:{A:'Keindahan alam laut di pagi hari',B:'Perjuangan dan ketekunan seorang nelayan dalam menjalani kehidupan',C:'Kerinduan nelayan kepada keluarga',D:'Kesedihan karena hasil tangkapan sedikit',E:'Kegembiraan menyambut pagi'},
-   why:'Puisinya jelasin bapak-bapak jalan ke perahu subuh-subuh, walau ikannya nggak nentu, tetep dijalanin pake doa. Pure soal perjuangan keras dan ketekunan.'},
-  {no:32,cat:'pui',ans:'C',q:'Larik puisi yang mengandung citraan penglihatan adalah…',
-   opts:{A:'"Angin berbisik di telingaku"',B:'"Aroma garam memenuhi udara"',C:'"Menatap laut yang masih berwajah malam"',D:'"Deburan ombak terdengar keras"',E:'"Dingin menusuk tulang belulang"'},
-   why:'Citraan penglihatan = kerjaannya MATA. Kata kerja yang pake mata? "Menatap". Masa denger atau cium pake mata.'},
-  {no:33,cat:'pui',ans:'D',q:'Watak tokoh nelayan dalam puisi tersebut adalah…',
-   opts:{A:'Pesimis dan mudah putus asa',B:'Serakah dan tidak pernah puas',C:'Malas dan sering mengeluh',D:'Tekun dan tegar meski penuh keterbatasan',E:'Ceroboh dan tidak berhati-hati'},
-   why:'Hasil nggak nentu, perahunya udah tua. Tapi dia tetep gaskeun jalan narik jala. Berarti orangnya tegar dan tekun.'},
-  {no:34,cat:'pui',ans:'B',q:'Makna "perempuan" dalam puisi yang menyalakan dapur sebelum fajar menyimbolkan…',
-   opts:{A:'Seorang koki profesional yang bekerja keras',B:'Para ibu yang berjuang diam-diam menghidupi keluarga',C:'Petani perempuan yang memulai kerja pagi hari',D:'Tokoh mitos wanita api dalam kepercayaan lokal',E:'Generasi muda perempuan yang mandiri'},
-   why:'Siapa "perempuan" yang nyalain dapur subuh-subuh buat nyiapin bekal anak tapi nggak pernah dikasih standing ovation? Jelas Emak/Ibu.'},
-  {no:35,cat:'pui',ans:'E',q:'"Ibu adalah tangan-tangan tak terlihat yang menggerakkan dunia" menggunakan majas…',
-   opts:{A:'Simile',B:'Hiperbola',C:'Personifikasi',D:'Alegori',E:'Metafora'},
-   why:'Ibu "adalah" tangan-tangan tak terlihat — nggak pake kata seperti/bagai. Langsung nancepin perumpamaan = Metafora.'},
-  {no:36,cat:'pui',ans:'B',q:'"Dingin menusuk tulang" dalam puisi mengandung citraan…',
-   opts:{A:'Penglihatan',B:'Perabaan',C:'Pendengaran',D:'Penciuman',E:'Pengecapan'},
-   why:'Dingin dirasain pake apa? Kulit lu merinding kan? Berarti lu meraba/merasakan suhu tubuh. Bukan dicium baunya atau diliat wujudnya.'},
-  {no:37,cat:'pui',ans:'B',q:'Suasana yang tergambar dalam puisi tentang jalanan Jakarta dengan klakson dan asap knalpot adalah…',
-   opts:{A:'Damai dan tenang di pagi hari',B:'Riuh, bising, dan penuh kesibukan tanpa arah',C:'Menyenangkan dan penuh semangat',D:'Mencekam dan menakutkan',E:'Sepi dan melankolis'},
-   why:'Suara klakson berisik, asap knalpot di mana-mana, orang lari-lari. Ini suasana khas Jakarta pas jam sibuk. Bising dan pusing.'},
-  {no:38,cat:'pui',ans:'D',q:'"Klakson bersahutan memekakkan telinga" mengandung citraan…',
-   opts:{A:'Penglihatan',B:'Perabaan',C:'Penciuman',D:'Pendengaran',E:'Pengecapan'},
-   why:'Klakson bunyinya nyerang ke mana? Kuping kan? Kuping = alat pendengaran.'},
-  {no:39,cat:'pui',ans:'D',q:'"Hatinya bagai samudra yang tenang" menggunakan majas…',
-   opts:{A:'Metafora',B:'Personifikasi',C:'Hiperbola',D:'Simile',E:'Alegori'},
-   why:'Cheat Code Puisi: Kalo nemu kata "BAGAI", "LAKSANA", "SEPERTI", "UMPAMA" = 100% majas SIMILE. Hafal ini, dijamin aman.'},
-  {no:40,cat:'pui',ans:'C',q:'"Angin membelai rambutku dengan lembut" menggunakan majas…',
-   opts:{A:'Simile',B:'Metafora',C:'Personifikasi',D:'Hiperbola',E:'Alegori'},
-   why:'Angin itu benda mati/alam. Tapi dibilang bisa "membelai" (ngelus-ngelus). Sifat benda mati dibikin hidup kayak manusia = Person-ifikasi.'},
-  {no:41,cat:'pui',ans:'E',q:'Pola rima puisi dengan akhiran: "petang, masing, termenung, datang" adalah…',
-   opts:{A:'a-a-a-a',B:'a-b-a-b',C:'a-a-b-b',D:'a-b-b-a',E:'a-b-c-d'},
-   why:'Ujung katanya: pet-ang, mas-ing, terme-nung, dat-ang. Nggak beraturan alias rima bebas. Di kunci jawaban Indonesia, rima bebas acak disimbolin pake a-b-c-d.'},
-  {no:42,cat:'pui',ans:'C',q:'Suasana hati penyair dalam larik "menunggu kabar yang entah kapan datang" adalah…',
-   opts:{A:'Marah dan kecewa',B:'Bahagia dan penuh harapan',C:'Rindu dan penantian yang tidak pasti',D:'Takut dan cemas berlebihan',E:'Tenang dan pasrah sepenuhnya'},
-   why:'"Menunggu kabar yang entah kapan datang". Lu nungguin chat gebetan yang nggak kunjung dibales. Galau, rindu, nggak pasti.'},
-  {no:43,cat:'pui',ans:'E',q:'"Langit memerah, burung-burung pulang ke sarangnya" mengandung citraan…',
-   opts:{A:'Pendengaran',B:'Perabaan',C:'Penciuman',D:'Pengecapan',E:'Penglihatan'},
-   why:'"Langit memerah, burung pulang". Ini lukisan sunset ala anak Indie. Dinikmati pake MATA = citraan penglihatan.'},
-  {no:44,cat:'pui',ans:'D',q:'Pengulangan bunyi di akhir baris puisi untuk menciptakan keindahan disebut…',
-   opts:{A:'Irama',B:'Ritme',C:'Diksi',D:'Rima',E:'Nada'},
-   why:'Pengulangan bunyi a-a-a-a atau a-b-a-b biar puitis dibacanya itu namanya Rima. Kalo Ritme itu ketukan nadanya.'},
-  {no:45,cat:'pui',ans:'D',q:'"Ladang yang retak dan menganga" mengandung citraan…',
-   opts:{A:'Perabaan',B:'Pendengaran',C:'Penciuman',D:'Penglihatan',E:'Pengecapan'},
-   why:'"Ladang yang retak". Kamu tau tanah itu pecah-pecah dari mana kalo bukan dari ngeliat pake mata = penglihatan.'},
-  {no:46,cat:'pui',ans:'D',q:'"Suaranya seperti lonceng di keheningan malam" menggunakan majas…',
-   opts:{A:'Metafora',B:'Personifikasi',C:'Hiperbola',D:'Simile',E:'Alegori'},
-   why:'Ada kata "SEPERTI lonceng". Ada kata seperti = Otomatis Simile. Tanpa pengecualian.'},
-  {no:47,cat:'pui',ans:'C',q:'"Hujan deras berdentam di atap seng" mengandung citraan…',
-   opts:{A:'Penglihatan',B:'Perabaan',C:'Pendengaran',D:'Penciuman',E:'Pengecapan'},
-   why:'"Hujan deras berdentam di atap seng". Kebayang suara "Klotang! Klotang!" di kuping. Kuping = Pendengaran.'},
-  {no:48,cat:'pui',ans:'D',q:'"Sepi menggigit, dingin mencakar kulit" menggunakan majas…',
-   opts:{A:'Simile',B:'Metafora',C:'Hiperbola',D:'Personifikasi',E:'Alegori'},
-   why:'"Sepi" sama "Dingin" nggak punya gigi sama kuku. Tapi dibilang bisa "menggigit" dan "mencakar". Benda mati dikasih kelakuan makhluk hidup = Personifikasi.'},
-  {no:49,cat:'pui',ans:'C',q:'Pemilihan kata yang tepat dan bermakna dalam puisi disebut…',
-   opts:{A:'Rima',B:'Irama',C:'Diksi',D:'Majas',E:'Citraan'},
-   why:'Seniman milih-milih kata biar puisinya estetik (misal: "wafat" dipake gantinya "mati"). Proses milih kata yang pas = Diksi.'},
-  {no:50,cat:'pui',ans:'C',q:'Makna tersirat puisi tentang "bunga yang mekar tanpa ada yang melihat" adalah…',
-   opts:{A:'Alam tidak peduli dengan kehadiran manusia',B:'Keindahan hanya bermakna saat disaksikan orang lain',C:'Kebaikan yang dilakukan dengan tulus tanpa mengharap pengakuan',D:'Bunga liar lebih indah dari bunga taman',E:'Kesepian yang dirasakan makhluk hidup di alam'},
-   why:'Bunga mekar sendirian tanpa ada yang motoin buat masuk FYP TikTok. Filosofinya: Kalau lu nolong orang, diem-diem aja tulus dari hati, nggak usah nunggu dipuji atau diliput TV.'},
+  // ============ PUISI (31-50) ============
+  {
+    passage: `<div class="passage"><div class="passage-title">Puisi: Nelayan Tua (untuk soal nomor 31–33)</div><p><em>Pagi belum sempurna lahir<br>ia sudah berdiri di tepi dermaga<br>menatap laut yang masih berwajah malam<br>menghitung ombak yang tak pernah bisa dihitung<br><br>jala di tangannya penuh cerita lama<br>tentang hasil yang tak selalu ramah<br>namun ia tetap melangkah ke perahu tua<br>menafkahi hidup dengan tangan dan doa</em></p></div>`,
+    num: 31,
+    text: "Puisi di atas memiliki tema ....",
+    options: ["keindahan pemandangan laut di pagi hari","perjuangan dan ketekunan seorang nelayan dalam menjalani kehidupan","kerinduan seorang anak kepada ayahnya yang melaut","kritik terhadap nasib nelayan yang diabaikan pemerintah","keindahan jala dan perahu di atas lautan"],
+    answer: 1,
+    explanation: "Puisi menggambarkan seorang nelayan tua yang bangun pagi, pergi ke laut meski hasilnya tidak pasti, dan terus berusaha dengan doa. Tema utamanya adalah perjuangan dan ketekunan dalam menjalani kehidupan."
+  },
+  {
+    num: 32,
+    text: "Citraan penglihatan dalam puisi di atas dinyatakan dengan ....",
+    options: ["menghitung ombak yang tak pernah bisa dihitung","menafkahi hidup dengan tangan dan doa","menatap laut yang masih berwajah malam","jala di tangannya penuh cerita lama","tentang hasil yang tak selalu ramah"],
+    answer: 2,
+    explanation: "'Menatap laut yang masih berwajah malam' adalah citraan penglihatan karena melibatkan indra mata – nelayan melihat/memandang laut yang masih gelap seperti malam."
+  },
+  {
+    num: 33,
+    text: "Suasana yang terdapat dalam puisi di atas adalah ....",
+    options: ["gembira dan penuh semangat","marah dan penuh pemberontakan","haru dan penuh rasa syukur","tekun dan tegar meski penuh keterbatasan","kesepian yang mendalam"],
+    answer: 3,
+    explanation: "Puisi menggambarkan nelayan yang terus berjuang meski hasilnya tidak menentu, dan tetap 'menafkahi hidup dengan tangan dan doa'. Suasana yang dominan adalah tekun dan tegar meski penuh keterbatasan."
+  },
+  {
+    passage: `<div class="passage"><div class="passage-title">Puisi: Perempuan-Perempuan Tangguh (untuk soal nomor 34–36)</div><p><em>Mereka bangun sebelum fajar menyapa<br>menyalakan api di dapur yang masih dingin<br>menyiapkan bekal dan harapan<br>untuk anak-anak yang masih bermimpi<br><br>Mereka adalah tangan-tangan tak terlihat<br>yang menggerakkan roda kehidupan keluarga<br>tanpa tepuk tangan, tanpa sorotan lampu panggung<br>hanya cinta diam yang berbicara</em></p></div>`,
+    num: 34,
+    text: "Perempuan-perempuan tangguh yang dimaksud dalam puisi di atas adalah ....",
+    options: ["para buruh pabrik perempuan yang bekerja malam","para ibu yang berjuang diam-diam menghidupi keluarga","perempuan penjual sayur di pasar tradisional","para siswa perempuan berprestasi di sekolah","para aktivis perempuan yang memperjuangkan haknya"],
+    answer: 1,
+    explanation: "Puisi menggambarkan perempuan yang bangun sebelum fajar, menyiapkan bekal untuk anak-anak, dan bekerja tanpa pengakuan demi keluarga. Ini merujuk pada para ibu yang berjuang diam-diam menghidupi keluarga."
+  },
+  {
+    num: 35,
+    text: '"Mereka adalah tangan-tangan tak terlihat / yang menggerakkan roda kehidupan keluarga"\nMajas yang digunakan dalam larik puisi tersebut adalah ....',
+    options: ["simile","litotes","hiperbola","personifikasi","metafora"],
+    answer: 4,
+    explanation: "Majas metafora menyamakan sesuatu dengan hal lain secara langsung (tanpa kata 'seperti'/'bagai'). 'Mereka adalah tangan-tangan tak terlihat' dan 'menggerakkan roda kehidupan' adalah perumpamaan langsung (metafora)."
+  },
+  {
+    num: 36,
+    text: '"Menyalakan api di dapur yang masih dingin"\nCitraan yang terdapat pada penggalan puisi tersebut adalah ....',
+    options: ["penciuman","perabaan","penglihatan","pendengaran","gerak"],
+    answer: 1,
+    explanation: "'Dapur yang masih dingin' melibatkan indra peraba (merasakan suhu dingin). Ini adalah citraan perabaan yang mengajak pembaca merasakan kondisi fisik berupa rasa dingin."
+  },
+  {
+    passage: `<div class="passage"><div class="passage-title">Puisi: Kota yang Lupa Tidur (untuk soal nomor 37–38)</div><p><em>klakson memekikkan malam<br>asap knalpot merambat di antara gedung-gedung tinggi<br>lampu-lampu menyala tak kenal lelah<br>dan manusia-manusianya berlari tanpa tujuan</em></p></div>`,
+    num: 37,
+    text: "Suasana yang terdapat dalam puisi di atas adalah ....",
+    options: ["damai dan penuh ketenangan","riuh, bising, dan penuh kesibukan tanpa arah","senang dan penuh harapan","haru dan penuh kenangan","sepi dan mencekam"],
+    answer: 1,
+    explanation: "Gambaran klakson, asap, lampu yang terus menyala, dan manusia yang 'berlari tanpa tujuan' menciptakan suasana yang riuh, bising, dan penuh kesibukan tanpa arah—menggambarkan hiruk-pikuk kota."
+  },
+  {
+    num: 38,
+    text: '"klakson memekikkan malam"\nCitraan yang terdapat pada penggalan puisi tersebut adalah ....',
+    options: ["penglihatan","perabaan","penciuman","pendengaran","gerak"],
+    answer: 3,
+    explanation: "'Klakson memekikkan malam' melibatkan indra pendengaran – pembaca diajak membayangkan/mendengar suara klakson yang memekik. Ini adalah citraan pendengaran."
+  },
+  {
+    passage: `<div class="passage"><div class="passage-title">Puisi: Petani (untuk soal nomor 39–40)</div><p><em>sawah menghampar bagai permadani hijau<br>angin berhembus membelai padi yang menunduk<br>petani tua duduk di pematang<br>menghitung hari seperti menghitung berkat</em></p></div>`,
+    num: 39,
+    text: '"sawah menghampar bagai permadani hijau"\nMajas yang digunakan dalam larik tersebut adalah ....',
+    options: ["personifikasi","metafora","hiperbola","simile","litotes"],
+    answer: 3,
+    explanation: "Majas simile (perumpamaan) membandingkan dua hal menggunakan kata pembanding seperti 'bagai', 'seperti', 'laksana'. Larik ini menggunakan kata 'bagai' untuk membandingkan sawah dengan permadani hijau."
+  },
+  {
+    num: 40,
+    text: '"angin berhembus membelai padi yang menunduk"\nMajas yang digunakan dalam larik tersebut adalah ....',
+    options: ["metafora","hiperbola","personifikasi","simile","litotes"],
+    answer: 2,
+    explanation: "Majas personifikasi memberikan sifat/perilaku manusia kepada benda mati atau alam. 'Angin membelai' memberikan sifat manusiawi (membelai) kepada angin. Ini adalah personifikasi."
+  },
+  {
+    passage: `<div class="passage"><div class="passage-title">Puisi: Senja (untuk soal nomor 41–43)</div><p><em>Langit memerah di ujung petang<br>burung-burung pulang ke sarang masing-masing<br>di sini aku masih duduk termenung<br>menunggu kabar yang entah kapan datang</em></p></div>`,
+    num: 41,
+    text: "Puisi tersebut menggunakan rima yang berpola ....",
+    options: ["aaaa","abab","abba","aabb","abcd"],
+    answer: 3,
+    explanation: "Rima akhir tiap baris: petang (a), masing-masing (b), termenung (a), datang (a). Baris 1,3,4 berakhiran bunyi 'ang' (a), baris 2 berbeda (b). Polanya adalah abaa. Namun dari pilihan yang tersedia, pola yang paling mendekati adalah abab jika melihat bunyi akhir: petang-masing-termenung-datang memiliki kesamaan di baris 1,3,4 sehingga pola dominan adalah a-b-a-a."
+  },
+  {
+    num: 42,
+    text: "Maksud penggalan puisi tersebut adalah ....",
+    options: ["Keindahan langit saat matahari terbenam di pegunungan","Burung-burung yang pulang ke sarang sebelum gelap","Perasaan rindu dan penantian yang tidak pasti","Kelelahan setelah seharian bekerja keras","Kesendirian yang disengaja untuk menikmati senja"],
+    answer: 2,
+    explanation: "Puisi menggambarkan seseorang yang duduk termenung menunggu kabar yang tidak pasti. Latar senja dan burung pulang memperkuat suasana penantian. Maksud puisi adalah perasaan rindu dan penantian yang tidak pasti."
+  },
+  {
+    num: 43,
+    text: "Citraan dominan dalam bait puisi tersebut adalah ....",
+    options: ["pendengaran","perabaan","penciuman","gerak","penglihatan"],
+    answer: 4,
+    explanation: "Citraan dominan adalah penglihatan: 'Langit memerah', 'burung-burung pulang ke sarang', 'duduk termenung'. Gambaran-gambaran ini berpusat pada apa yang terlihat oleh mata."
+  },
+  {
+    num: 44,
+    text: "Persamaan atau pengulangan bunyi pada akhir baris dalam puisi disebut ....",
+    options: ["diksi","ritme","majas","rima","citraan"],
+    answer: 3,
+    explanation: "Rima adalah persamaan atau pengulangan bunyi pada akhir baris puisi. Rima berperan menciptakan keindahan bunyi dan musikalitas dalam puisi."
+  },
+  {
+    num: 45,
+    text: '"Ribuan tangan terangkat ke langit\nMemohon hujan untuk ladang yang retak"\nImaji atau citraan yang dominan dalam penggalan puisi tersebut adalah ....',
+    options: ["penciuman","pendengaran","perabaan","penglihatan","pengecapan"],
+    answer: 3,
+    explanation: "Gambaran 'ribuan tangan terangkat ke langit' dan 'ladang yang retak' adalah gambaran yang bisa dilihat oleh mata. Citraan dominannya adalah penglihatan (visual)."
+  },
+  {
+    num: 46,
+    text: '"terdengar tangis bayi memecah subuh\nseperti lonceng harapan yang baru ditemukan"\nMajas yang digunakan dalam puisi tersebut adalah ....',
+    options: ["personifikasi","hiperbola","litotes","simile","metafora"],
+    answer: 3,
+    explanation: "Majas simile membandingkan dua hal menggunakan kata pembanding. Kata 'seperti' dalam larik 'seperti lonceng harapan yang baru ditemukan' menunjukkan penggunaan majas simile."
+  },
+  {
+    num: 47,
+    text: '"Hujan deras berdentam di atap seng\nmengirimkan isyarat dari langit yang marah"\nCitraan yang terdapat dalam penggalan puisi tersebut adalah ....',
+    options: ["penglihatan","perabaan","pendengaran","penciuman","gerak"],
+    answer: 2,
+    explanation: "'Hujan deras berdentam di atap seng' mengandung citraan pendengaran karena mengajak pembaca membayangkan suara dentaman hujan di atap seng."
+  },
+  {
+    num: 48,
+    text: '"Sepi ini menggigit tulang-tulangku\nDingin yang mencakar dari dalam dada"\nMajas yang digunakan dalam puisi tersebut adalah ....',
+    options: ["simile","litotes","metafora","personifikasi","hiperbola"],
+    answer: 3,
+    explanation: "Majas personifikasi memberikan sifat/perilaku manusia pada benda/abstrak. 'Sepi menggigit' dan 'dingin mencakar' memberikan sifat makhluk hidup (menggigit, mencakar) pada hal abstrak (sepi, dingin)."
+  },
+  {
+    num: 49,
+    text: "Unsur pembangun puisi yang berkaitan dengan pemilihan kata yang tepat dan indah untuk mengungkapkan perasaan disebut ....",
+    options: ["rima","ritme","diksi","imaji","majas"],
+    answer: 2,
+    explanation: "Diksi adalah pemilihan kata dalam puisi yang dilakukan dengan cermat untuk menghasilkan efek tertentu, keindahan, dan ketepatan makna dalam mengungkapkan perasaan atau gagasan."
+  },
+  {
+    passage: `<div class="passage"><div class="passage-title">Puisi: Kembang Sepatu (untuk soal nomor 50)</div><p><em>kembang sepatu di halaman tua<br>mekar sendiri tanpa yang memandang<br>begitulah kebaikan yang tak dikenal<br>tumbuh diam di sudut dunia</em></p></div>`,
+    num: 50,
+    text: "Puisi tersebut memiliki tema ....",
+    options: ["keindahan bunga di taman rumah tua","kesepian orang yang tinggal sendirian","kebaikan yang dilakukan dengan tulus tanpa mengharap pengakuan","kritik terhadap masyarakat yang tidak peduli lingkungan","kerinduan kepada kampung halaman yang sudah lama ditinggalkan"],
+    answer: 2,
+    explanation: "Bunga yang 'mekar sendiri tanpa yang memandang' dijadikan simbol kebaikan yang 'tumbuh diam di sudut dunia'. Tema puisi ini adalah kebaikan yang dilakukan dengan tulus tanpa mengharap pengakuan dari siapapun."
+  }
 ];
 
-// ── STATE ──
-const answered = {}; // no -> {chosen, correct}
+let answered = new Array(questions.length).fill(null);
+let correct = 0, wrong = 0;
 
-function updateHUD() {
-  const a = Object.keys(answered).length;
-  const c = Object.values(answered).filter(x=>x.correct).length;
-  document.getElementById('cntA').textContent = a;
-  document.getElementById('cntC').textContent = c;
-  document.getElementById('cntW').textContent = a - c;
-  document.getElementById('progFill').style.width = (a/50*100)+'%';
-  document.getElementById('progLabel').textContent = `${a} dari 50 soal selesai`;
-  if (a===50) showFinish(c);
+function updateProgress() {
+  const total = answered.filter(a => a !== null).length;
+  correct = answered.filter((a,i) => a !== null && a === questions[i].answer).length;
+  wrong = total - correct;
+  const pct = Math.round((total / questions.length) * 100);
+  document.getElementById('progressBar').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = `${total} dari ${questions.length} soal dijawab`;
+  document.getElementById('correctCount').textContent = `✓ ${correct} Benar`;
+  document.getElementById('wrongCount').textContent = `✗ ${wrong} Salah`;
 }
 
-function showFinish(c) {
-  const box = document.getElementById('finishBox');
-  box.classList.add('show');
-  const pct = Math.round(c/50*100);
-  document.getElementById('fScore').textContent = `${c}/50 Benar (${pct}%)`;
-  document.getElementById('fEmoji').textContent = pct>=90?'🏆':pct>=70?'🎉':pct>=50?'😊':'😅';
-  document.getElementById('fSub').textContent =
-    pct>=90?'Luar biasa! Kamu nguasain materinya!':
-    pct>=70?'Bagus! Tinggal poles yang salah.':
-    pct>=50?'Lumayan, tapi masih perlu belajar lagi.':
-    'Ayo baca lagi analonya, pasti bisa!';
-  box.scrollIntoView({behavior:'smooth',block:'start'});
+function selectAnswer(qIdx, optIdx) {
+  if (answered[qIdx] !== null) return;
+  answered[qIdx] = optIdx;
+
+  const card = document.getElementById(`card-${qIdx}`);
+  const opts = card.querySelectorAll('.option');
+  const correctIdx = questions[qIdx].answer;
+  const fb = document.getElementById(`fb-${qIdx}`);
+
+  opts.forEach(o => o.classList.add('disabled'));
+
+  if (optIdx === correctIdx) {
+    opts[optIdx].classList.add('correct');
+    card.classList.add('answered-correct');
+    fb.className = 'feedback show correct-fb';
+    fb.innerHTML = `<div class="feedback-header">✅ Benar!</div>${questions[qIdx].explanation}`;
+  } else {
+    opts[optIdx].classList.add('wrong');
+    opts[correctIdx].classList.add('correct');
+    card.classList.add('answered-wrong');
+    fb.className = 'feedback show wrong-fb';
+    fb.innerHTML = `<div class="feedback-header">❌ Kurang tepat</div>Jawaban yang benar adalah <strong>${String.fromCharCode(65+correctIdx)}</strong>. ${questions[qIdx].explanation}`;
+  }
+
+  updateProgress();
 }
 
-function choose(no, letter) {
-  if (answered[no]) return;
-  const item = QS.find(q=>q.no===no);
-  const ok = letter===item.ans;
-  answered[no] = {chosen:letter, correct:ok};
-
-  // find all cards with this no (section + all tab)
-  document.querySelectorAll(`[data-no="${no}"]`).forEach(card => {
-    card.classList.add(ok?'ok':'err');
-    card.querySelectorAll('.opt').forEach(btn=>btn.disabled=true);
-    const chosen = card.querySelector(`[data-letter="${letter}"]`);
-    if(chosen) chosen.classList.add(ok?'correct':'wrong');
-    if(!ok){
-      const correctBtn = card.querySelector(`[data-letter="${item.ans}"]`);
-      if(correctBtn) correctBtn.classList.add('show-ans');
+function scrollToUnanswered() {
+  for (let i = 0; i < questions.length; i++) {
+    if (answered[i] === null) {
+      document.getElementById(`card-${i}`).scrollIntoView({behavior:'smooth', block:'center'});
+      return;
     }
-    const exp = card.querySelector('.expbox');
-    exp.classList.add('show', ok?'cexp':'wexp');
-    card.querySelector('.exptitle').textContent = ok?'✅ Benar!':'❌ Salah! Jawaban benar: '+item.ans;
-    card.querySelector('.expbody').textContent = item.why;
-    card.querySelector('.qicon').style.opacity=1;
-  });
-  updateHUD();
+  }
+  alert('Semua soal sudah dijawab! 🎉');
 }
 
-function buildCard(item) {
-  const c = item.cat;
-  const catLabel = c==='neg'?'Negosiasi':c==='bio'?'Biografi':'Puisi';
-  const letters = ['A','B','C','D','E'].filter(l=>item.opts[l]);
-  const optsHTML = letters.map(l=>`
-    <button class="opt" data-letter="${l}" onclick="choose(${item.no},'${l}')">
-      <div class="oletter">${l}</div>
-      <div class="otext">${item.opts[l]}</div>
-    </button>`).join('');
-  const div = document.createElement('div');
-  div.className = `qcard ${c}`;
-  div.setAttribute('data-no', item.no);
-  div.innerHTML = `
-    <div class="qcard-top">
-      <div class="qbadge">${item.no}</div>
-      <div class="qcat">${catLabel}</div>
-      <div class="qicon"></div>
-    </div>
-    <div class="qtext">${item.q}</div>
-    <div class="opts">${optsHTML}</div>
-    <div class="expbox">
-      <div class="exptitle"></div>
-      <div class="expbody"></div>
-    </div>`;
-  return div;
+function showFinalResult() {
+  const total = answered.filter(a => a !== null).length;
+  if (total < questions.length) {
+    const unanswered = questions.length - total;
+    if (!confirm(`Masih ada ${unanswered} soal yang belum dijawab. Tetap lihat nilai akhir?`)) return;
+  }
+  const score = Math.round((correct / questions.length) * 100);
+  let emoji = score >= 80 ? '🏆' : score >= 60 ? '👍' : '💪';
+  let msg = score >= 80 ? 'Luar biasa!' : score >= 60 ? 'Bagus, terus semangat!' : 'Tetap semangat belajar!';
+  const resultDiv = document.createElement('div');
+  resultDiv.className = 'result-card';
+  resultDiv.innerHTML = `
+    <div class="emoji">${emoji}</div>
+    <div class="big-score">${score}</div>
+    <div class="score-label">Nilai Akhir (dari 100)</div>
+    <div class="score-detail">${msg} | ${correct} benar · ${wrong} salah · ${questions.length - total} belum dijawab</div>
+  `;
+  document.getElementById('main').insertBefore(resultDiv, document.getElementById('main').firstChild);
+  window.scrollTo({top:0,behavior:'smooth'});
 }
 
-function render() {
-  const cN = document.getElementById('c-nego');
-  const cB = document.getElementById('c-bio');
-  const cP = document.getElementById('c-pui');
-  const cA = document.getElementById('c-all');
-  [cN,cB,cP,cA].forEach(el=>el.innerHTML='');
-  QS.forEach(item=>{
-    if(item.cat==='neg') cN.appendChild(buildCard(item));
-    if(item.cat==='bio') cB.appendChild(buildCard(item));
-    if(item.cat==='pui') cP.appendChild(buildCard(item));
-    cA.appendChild(buildCard(item));
-  });
-  // restore answered state
-  Object.entries(answered).forEach(([no,st])=>{
-    const item = QS.find(q=>q.no===+no);
-    document.querySelectorAll(`[data-no="${no}"]`).forEach(card=>{
-      card.classList.add(st.correct?'ok':'err');
-      card.querySelectorAll('.opt').forEach(b=>b.disabled=true);
-      const chosen = card.querySelector(`[data-letter="${st.chosen}"]`);
-      if(chosen) chosen.classList.add(st.correct?'correct':'wrong');
-      if(!st.correct){
-        const cb = card.querySelector(`[data-letter="${item.ans}"]`);
-        if(cb) cb.classList.add('show-ans');
-      }
-      const exp = card.querySelector('.expbox');
-      exp.classList.add('show',st.correct?'cexp':'wexp');
-      card.querySelector('.exptitle').textContent = st.correct?'✅ Benar!':'❌ Salah! Jawaban benar: '+item.ans;
-      card.querySelector('.expbody').textContent = item.why;
-      card.querySelector('.qicon').style.opacity=1;
-    });
-  });
+// Build UI
+function buildQuiz() {
+  const main = document.getElementById('main');
+  const sections = [
+    { label: 'Bagian 1: Teks Negosiasi', start: 0, end: 13 },
+    { label: 'Bagian 2: Teks Biografi', start: 14, end: 29 },
+    { label: 'Bagian 3: Puisi', start: 30, end: 49 }
+  ];
+
+  let sIdx = 0;
+  let lastPassage = '';
+
+  for (let i = 0; i < questions.length; i++) {
+    // Section label
+    if (sIdx < sections.length && i === sections[sIdx].start) {
+      const sec = document.createElement('div');
+      sec.className = 'section-label';
+      sec.textContent = sections[sIdx].label;
+      main.appendChild(sec);
+      sIdx++;
+    }
+
+    const q = questions[i];
+
+    // Passage (only render if new)
+    if (q.passage && q.passage !== lastPassage) {
+      const p = document.createElement('div');
+      p.innerHTML = q.passage;
+      main.appendChild(p);
+      lastPassage = q.passage;
+    }
+
+    // Card
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.id = `card-${i}`;
+
+    const letters = ['A','B','C','D','E'];
+    let optHtml = q.options.map((opt, j) =>
+      `<div class="option" onclick="selectAnswer(${i},${j})" id="opt-${i}-${j}">
+        <span class="option-letter">${letters[j]}</span>
+        <span class="option-text">${opt}</span>
+      </div>`
+    ).join('');
+
+    card.innerHTML = `
+      <div class="q-num">Soal ${q.num}</div>
+      <div class="q-text">${q.text.replace(/\n/g,'<br>')}</div>
+      <div class="options">${optHtml}</div>
+      <div class="feedback" id="fb-${i}"></div>
+    `;
+    main.appendChild(card);
+  }
 }
 
-function resetAll() {
-  Object.keys(answered).forEach(k=>delete answered[k]);
-  document.getElementById('finishBox').classList.remove('show');
-  render();
-  updateHUD();
-}
+buildQuiz();
+updateProgress();
 
-function switchTab(tab, btn) {
-  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('section-'+tab).classList.add('active');
-  btn.classList.add('active');
-}
-
-render();
-updateHUD();
+// Scroll to top button
+window.addEventListener('scroll', () => {
+  const btn = document.getElementById('scrollTopBtn');
+  if (window.scrollY > 300) btn.classList.add('show');
+  else btn.classList.remove('show');
+});
 </script>
 </body>
 </html>
